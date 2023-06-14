@@ -1,10 +1,11 @@
 <template>
-  <div class="">
-    <h1 class="p-2 text-lg">
-      Hello World
-    </h1>
+  <div>
+    <NuxtLoadingIndicator
+        color="#000000"
+        class="w-full"
+    />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
-  <input type="text" placeholder="Username">
 </template>
-<script setup>
-</script>

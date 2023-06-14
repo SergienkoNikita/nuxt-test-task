@@ -22,8 +22,13 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/eslint-module',
+    '@nuxtjs/svg-sprite',
     // '@pinia/nuxt',
   ],
+
+  svgSprite: {
+    input: '~/components/base/base-icon/icons',
+  },
 
   // pinia: {
   //   autoImports: ['defineStore'],
