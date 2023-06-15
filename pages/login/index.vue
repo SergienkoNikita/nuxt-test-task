@@ -1,20 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { definePageMeta } from '#imports';
-import BaseButton from '~/components/base/base-button/base-button.vue';
-import { useAuthStore } from '~/stores/use-auth-store';
 import { navigateTo } from '#app';
-import BaseInput from '~/components/base/base-input/base-input.vue';
+import ClearFormModal from '~/components/common/clear-form-modal/clear-form-modal.vue';
 
 definePageMeta({
   layout: 'authorization',
 });
 
-const authStore = useAuthStore();
+const isModalVisible = ref<boolean>(false);
 
-const onNavClick = (e) => {
-  // eslint-disable-next-line no-console
-  console.log(e);
-  navigateTo('/registration');
+const onNavClick = (): void => {
+  isModalVisible.value = true;
+  // navigateTo('/registration');
 };
 </script>
 
@@ -28,16 +26,11 @@ const onNavClick = (e) => {
       </p>
       <hr class="w-[120px] bg-grey-400">
     </div>
+    <ClearFormModal
+      v-model="isModalVisible"
+      @apply="navigateTo('/registration')"
+    />
     <div class="w-[453px] m-auto text-center text-xs-medium">
-      <BaseInput
-        v-model="authStore.loginForm.email"
-        name="email"
-        rules="email"
-      />
-      <BaseButton
-        label="sing up"
-        disabled
-      />
       <p class="mt-4">
         <span>Don’t have account? </span>
         <a

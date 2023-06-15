@@ -54,8 +54,11 @@ const onButtonClick = (): void => {
   <component
     v-bind="attrs"
     :is="currentButtonComponent"
-    class="w-full text-white p-4 rounded-md"
-    :class="[props.disabled ? 'bg-blue-200/60 cursor-not-allowed' : 'bg-blue-200']"
+    class="w-full text-white p-4 rounded-md transition-[all_0.2s_linear]"
+    :class="[props.disabled
+      ? 'bg-blue-200/60 cursor-not-allowed'
+      : 'bg-blue-200 hover:bg-blue-200/80'
+    ]"
     @click="onButtonClick"
   >
     <slot>{{ props.label }}</slot>
