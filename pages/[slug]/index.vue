@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouteLocation } from 'vue-router';
 import { useRoute } from '#app';
-import BaseIcon from '~/components/base/base-icon/base-icon.vue';
+import { BaseIcon } from '~/components/base/base-icon';
 
 const route = <RouteLocation>useRoute();
 </script>
@@ -10,7 +10,7 @@ const route = <RouteLocation>useRoute();
   <h1>Страница: {{ route.params.slug }}</h1>
   <div class="">
     <BaseIcon
-      name="person"
+      name="secure"
       class="fill-blue-600"
     />
     <h1 class="p-2 text-lg">
