@@ -1,7 +1,5 @@
 <script setup lang="ts">
-
-import BaseModal from '~/components/base/base-modal/base-modal.vue';
-import BaseButton from '~/components/base/base-button/base-button.vue';
+import { BaseModal, BaseButton } from '~/components/base';
 
 interface Emits {
   (event: 'update:model-value', value: boolean): void;
@@ -41,7 +39,7 @@ const onDismiss = () => {
           Cancel
         </button>
         <BaseButton
-          class="w-[100px]"
+          class="max-w-[100px]"
           label="Agree"
           @click="onSubmit"
         />

@@ -10,9 +10,12 @@ definePageMeta({
 
 const isModalVisible = ref<boolean>(false);
 
-const onNavClick = (): void => {
+const onLinkClick = (): void => {
   isModalVisible.value = true;
-  // navigateTo('/registration');
+};
+
+const onApplyClearForm = () => {
+  navigateTo('/registration');
 };
 </script>
 
@@ -28,7 +31,7 @@ const onNavClick = (): void => {
     </div>
     <ClearFormModal
       v-model="isModalVisible"
-      @apply="navigateTo('/registration')"
+      @apply="onApplyClearForm"
     />
     <div class="w-[453px] m-auto text-center text-xs-medium">
       <p class="mt-4">
@@ -36,7 +39,7 @@ const onNavClick = (): void => {
         <a
           class="text-blue-200 text-xs-bold"
           href="#"
-          @click.prevent="onNavClick"
+          @click.prevent="onLinkClick"
         >
           Create an account
         </a>
