@@ -106,6 +106,11 @@ const typographyComponents = {
         lineHeight: '24px',
         fontWeight: defaultTheme.fontWeight.medium,
     },
+    '.text-xs-bold': {
+        fontSize: fontSize.xs,
+        lineHeight: '24px',
+        fontWeight: defaultTheme.fontWeight.bold,
+    },
 }
 
 const headingBase = {

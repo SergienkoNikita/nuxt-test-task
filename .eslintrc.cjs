@@ -4,9 +4,12 @@ module.exports = {
     extends: [
         'airbnb',
         'airbnb-typescript',
+        'plugin:nuxt/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:vue/vue3-recommended',
     ],
     parser: 'vue-eslint-parser',
-    plugins: ["@typescript-eslint", "import"],
+    plugins: ["import"],
     parserOptions: {
         parser: {
             '<template>': 'espree',
@@ -25,9 +28,14 @@ module.exports = {
     },
 
     rules: {
+        'vue/multi-word-component-names': 'off',
         'import/no-extraneous-dependencies': 'off',
         'import/prefer-default-export': 'off',
         'import/extensions': 'off',
         'import/no-unresolved': 'off'
-    }
+    },
+    globals: {
+        defineEmits: true,
+        defineProps: true,
+    },
 }

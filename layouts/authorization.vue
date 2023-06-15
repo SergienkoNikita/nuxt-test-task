@@ -62,22 +62,33 @@ const pageContent = getPageContent();
 </script>
 
 <template>
+  <!-- eslint-disable vue/no-v-html -->
   <div class="container min-h-[100vh] flex items-center">
     <div class="h-[1024px] w-full bg-white-additional rounded-lg flex overflow-hidden">
       <section class="w-1/2 flex items-center justify-center">
-        <slot/>
+        <slot />
       </section>
       <section class="relative w-1/2 bg-blue-600 flex items-center justify-center">
-        <div class="absolute
+        <div
+          class="absolute
                     flex items-center justify-center
                     h-[606px] w-[606px] rounded-full gradient"
         >
-          <div class="inner-gradient h-[528px] w-[528px] rounded-full"></div>
-          <span class="absolute" v-if="pageContent?.img" v-html="pageContent.img"/>
+          <div class="inner-gradient h-[528px] w-[528px] rounded-full" />
+          <span
+            v-if="pageContent?.img"
+            class="absolute"
+            v-html="pageContent.img"
+          />
         </div>
-        <div v-if="pageContent" class="self-end text-white text-center w-full mb-[108px]">
-          <h4>{{pageContent.title}}</h4>
-          <p class="text-sm-medium">{{pageContent.description}}</p>
+        <div
+          v-if="pageContent"
+          class="self-end text-white text-center w-full mb-[108px]"
+        >
+          <h4>{{ pageContent.title }}</h4>
+          <p class="text-sm-medium">
+            {{ pageContent.description }}
+          </p>
         </div>
       </section>
     </div>
