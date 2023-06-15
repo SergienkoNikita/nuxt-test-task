@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
   // @ts-ignore
   app: {
     head: {
@@ -23,14 +24,18 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/eslint-module',
     '@nuxtjs/svg-sprite',
-    // '@pinia/nuxt',
+    '@pinia/nuxt',
   ],
+
+  components: {
+    dirs: [],
+  },
 
   svgSprite: {
     input: '~/components/base/base-icon/icons',
   },
 
-  // pinia: {
-  //   autoImports: ['defineStore'],
-  // },
+  pinia: {
+    autoImports: ['defineStore'],
+  },
 });
