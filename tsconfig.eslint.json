@@ -8,6 +8,7 @@
     "./*.tsx",
     ".eslintrc.cjs"
   ],
+  "exclude": ["./node_modules"],
   "compilerOptions": {
     "allowJs": true
   }

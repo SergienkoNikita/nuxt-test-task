@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     '@nuxtjs/svg-sprite',
     '@pinia/nuxt',
+    '@vee-validate/nuxt',
   ],
 
   components: {

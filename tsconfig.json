@@ -1,4 +1,35 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "useDefineForClassFields": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": true,
+
+    /* Linter Checks */
+    "noImplicitReturns": false, // https://eslint.org/docs/rules/consistent-return ?
+    "noFallthroughCasesInSwitch": true, // https://eslint.org/docs/rules/no-fallthrough
+
+    "noUnusedLocals": false, // https://eslint.org/docs/rules/no-unused-vars But unlike eslint, this property also checks the properties of the class. It would be nice, but it does not work correctly on vue components, because it does not see what is happening in the template.
+
+    "noUnusedParameters": true, // https://eslint.org/docs/rules/no-unused-vars#args
+    "allowUnreachableCode": false, // https://eslint.org/docs/rules/no-unreachable ?
+    "allowUnusedLabels": false, // https://eslint.org/docs/rules/no-unused-labels
+
+    /* Base Strict Checks */
+    "noImplicitUseStrict": false,
+    "suppressExcessPropertyErrors": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "noStrictGenericChecks": false
+  }
 }

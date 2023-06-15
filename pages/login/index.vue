@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { definePageMeta } from '#imports';
 import BaseButton from '~/components/base/base-button/base-button.vue';
+import { useAuthStore } from '~/stores/use-auth-store';
+import { navigateTo } from '#app';
+import BaseInput from '~/components/base/base-input/base-input.vue';
 
 definePageMeta({
   layout: 'authorization',
 });
 
+const authStore = useAuthStore();
+
 const onNavClick = (e) => {
   // eslint-disable-next-line no-console
   console.log(e);
+  navigateTo('/registration');
 };
 </script>
 
@@ -23,6 +29,11 @@ const onNavClick = (e) => {
       <hr class="w-[120px] bg-grey-400">
     </div>
     <div class="w-[453px] m-auto text-center text-xs-medium">
+      <BaseInput
+        v-model="authStore.loginForm.email"
+        name="email"
+        rules="email"
+      />
       <BaseButton
         label="sing up"
         disabled

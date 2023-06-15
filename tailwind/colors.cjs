@@ -19,6 +19,7 @@ const colors = {
     },
 
     white: createRgbStringWithAlphaValueForVariable('--white'),
+    danger: createRgbStringForVariable('--danger'),
     'white-additional': createRgbStringWithAlphaValueForVariable('--white-additional'),
     transparent: 'transparent',
     current: 'currentColor',
