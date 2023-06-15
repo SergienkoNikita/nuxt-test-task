@@ -67,10 +67,17 @@ const pageContent = getPageContent();
       <section class="w-1/2 flex items-center justify-center">
         <slot/>
       </section>
-      <section class="w-1/2 bg-blue-600 relative flex items-center justify-center">
-        <div class="gradient flex items-center justify-center">
-          <div class="inner-gradient"></div>
+      <section class="relative w-1/2 bg-blue-600 flex items-center justify-center">
+        <div class="absolute
+                    flex items-center justify-center
+                    h-[606px] w-[606px] rounded-full gradient"
+        >
+          <div class="inner-gradient h-[528px] w-[528px] rounded-full"></div>
           <span class="absolute" v-if="pageContent?.img" v-html="pageContent.img"/>
+        </div>
+        <div v-if="pageContent" class="self-end text-white text-center w-full mb-[108px]">
+          <h4>{{pageContent.title}}</h4>
+          <p class="text-sm-medium">{{pageContent.description}}</p>
         </div>
       </section>
     </div>
@@ -79,17 +86,12 @@ const pageContent = getPageContent();
 
 <style>
 .gradient {
-  height: 606px;
-  width: 606px;
-  border-radius: 999px;
-  background: linear-gradient(162.74deg, rgba(68, 76, 231, 0.162) 6.85%, rgba(0, 0, 0, 0) 89.34%),
-  radial-gradient(50% 50% at 50% 50%, rgba(68, 76, 231, 0.162) 0%, rgba(68, 76, 231, 0.058) 100%);
+  background-image:
+    linear-gradient(162.74deg, rgba(68, 76, 231, 0.162) 6.85%, rgba(0, 0, 0, 0) 89.34%),
+    radial-gradient(50% 50% at 50% 50%, rgba(68, 76, 231, 0.162) 0%, rgba(68, 76, 231, 0.058) 100%);
 }
 .inner-gradient {
-  height: 528px;
-  width: 528px;
-  border-radius: 999px;
-  background: linear-gradient(173.9deg, rgba(164, 188, 253, 0.2) 4.83%,
+  background-image: linear-gradient(173.9deg, rgba(164, 188, 253, 0.2) 4.83%,
   rgba(68, 76, 231, 0.162) 91.13%),
   radial-gradient(50% 50% at 50% 50%, rgba(68, 76, 231, 0.162) 0%, rgba(68, 76, 231, 0.058) 100%);
 }
