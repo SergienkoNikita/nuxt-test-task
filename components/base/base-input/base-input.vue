@@ -26,6 +26,8 @@ const {
   initialValue: props.modelValue,
 });
 
+const isFocus = ref<boolean>(false);
+
 const localValue = computed<BaseInputProps['modelValue']>({
   get() {
     return props.modelValue;
@@ -44,11 +46,13 @@ const nativeControlAttributes = computed(() => {
   return nativeControlAttrs;
 });
 const onNativeControlBlur = () => {
+  isFocus.value = false;
   setTouched(true);
   emits('blur');
 };
 
 const onNativeControlFocus = () => {
+  isFocus.value = true;
   emits('focus');
 };
 
@@ -68,6 +72,7 @@ defineExpose({ setErrors, focus });
 
 <template>
   <BaseField
+    :is-focus="isFocus"
     :class="attrs.class"
     :style="attrs.style"
     :error-message="meta.touched ? errorMessage : undefined"

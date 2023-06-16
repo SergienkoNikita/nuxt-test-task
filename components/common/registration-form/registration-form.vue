@@ -5,6 +5,7 @@ import {
   BaseForm, BaseInput, BaseIcon, BaseInputPassword, BaseCheckbox,
 } from '~/components/base';
 import BaseButton from '~/components/base/base-button/base-button.vue';
+import { computed } from '#imports';
 
 interface Emits {
   (event: 'submit', formData: RegistrationForm): void
@@ -15,13 +16,16 @@ const emits = defineEmits<Emits>();
 const { registrationForm } = useAuthStore();
 const passwordConfirm = ref<InstanceType<typeof BaseInputPassword>>();
 
+const isConfirmPasswordValid = computed<boolean>(() => (
+  passwordConfirm.value && registrationForm.passwordRepeat === registrationForm.password
+));
+
 const onSubmitRegistrationForm = (formData: RegistrationForm) => {
   emits('submit', formData);
 };
 
 const validatePasswordConfirmation = (): void => {
-  if (!passwordConfirm.value
-    || registrationForm.passwordRepeat === registrationForm.password) return;
+  if (isConfirmPasswordValid.value) return;
 
   passwordConfirm.value.setErrors('Password mismatch');
 };
@@ -98,7 +102,7 @@ const validatePasswordConfirmation = (): void => {
 
     <BaseButton
       class="mt-[25px]"
-      :disabled="!meta.valid"
+      :disabled="!meta.valid && !isConfirmPasswordValid"
       label="SIGN UP"
     />
   </BaseForm>
