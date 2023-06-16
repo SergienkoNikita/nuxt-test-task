@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { definePageMeta } from '#imports';
 import { navigateTo } from '#app';
-import ClearFormModal from '~/components/common/clear-form-modal/clear-form-modal.vue';
+import { ClearFormModal } from '~/components/common/clear-form-modal';
 
 definePageMeta({
   layout: 'authorization',

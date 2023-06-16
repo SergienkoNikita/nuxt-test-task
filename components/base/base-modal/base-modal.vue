@@ -21,16 +21,23 @@ const props = withDefaults(defineProps<{
         class="flex flex-col bg-white-additional  m-auto rounded-lg
                justify-center items-center px-7 pt-6 pb-4"
       >
-        <div class="">
-          <slot />
-        </div>
         <div
+          v-if="slots.header"
           class="w-full flex-shrink min-h-20"
         >
-          <hr
-            v-if="slots.footer"
-            class="bg-grey-400/50 mb-4 border-0 h-[1px] -mx-7"
-          >
+          <slot name="header" />
+          <hr class="bg-grey-400/50 mt-4 border-0 h-[1px] -mx-7">
+        </div>
+
+        <div>
+          <slot />
+        </div>
+
+        <div
+          v-if="slots.footer"
+          class="w-full flex-shrink min-h-20"
+        >
+          <hr class="bg-grey-400/50 mb-4 border-0 h-[1px] -mx-7">
           <slot name="footer" />
         </div>
       </div>

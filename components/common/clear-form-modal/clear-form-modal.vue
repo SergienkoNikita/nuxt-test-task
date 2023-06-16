@@ -27,6 +27,10 @@ const onDismiss = () => {
 
 <template>
   <BaseModal :is-visible="props.modelValue">
+    <template #header>
+      <h1>Attention</h1>
+    </template>
+
     <div class="flex flex-col justify-center h-[100px]">
       <h4>If you leave this page, the form data will be cleared.</h4>
     </div>
