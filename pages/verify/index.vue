@@ -19,6 +19,10 @@ definePageMeta({
 });
 
 const { registrationForm } = useAuthStore();
+const onOtpSubmit = (otp: string): void => {
+  // eslint-disable-next-line no-console
+  console.log(otp);
+};
 </script>
 
 <template>
@@ -27,10 +31,12 @@ const { registrationForm } = useAuthStore();
       <h1 class="w-full">
         Enter OTP
       </h1>
+
       <h4 class="text-lg w-full mt-4">
         <span class="tracking-wide">Sent OTP on </span>
         <span class="text-blue-200 text-lg-semibold">{{ registrationForm.email }}</span>
       </h4>
+
       <NuxtLink
         class="self-start text-blue-200 text-sm-bold"
         to="/registration"
@@ -38,6 +44,7 @@ const { registrationForm } = useAuthStore();
         Change email
       </NuxtLink>
     </div>
-    <OTPForm />
+
+    <OTPForm @submit="onOtpSubmit" />
   </div>
 </template>

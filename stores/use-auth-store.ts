@@ -17,11 +17,11 @@ const getDefaultLoginForm = (): LoginForm => ({
 });
 
 const getDefaultRegistrationForm = (): RegistrationForm => ({
-  userName: '',
-  email: '',
-  password: '',
-  passwordRepeat: '',
-  acceptPolitics: false,
+  userName: 'Nikita',
+  email: 'asd@as.vd',
+  password: '123456',
+  passwordRepeat: '123456',
+  acceptPolitics: true,
 });
 
 export const useAuthStore = defineStore('auth', () => {

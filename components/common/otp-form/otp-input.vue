@@ -27,10 +27,20 @@ const setRefs = (el: InstanceType<typeof BaseInput>, id: number): void => {
   refs.value.set(id, el);
 };
 
-const onInputChange = (index: number, value: string): void => {
-  if (typeof localValue.value.at(index) !== 'string' || index > localValue.value.length - 1) return;
+const formatValue = (value: string): string => {
+  const formattedValue = value.replace(/[^0-9A-Z]/gi, '');
 
-  localValue.value[index] = value[value.length - 1] ?? '';
+  return formattedValue.at(formattedValue.length - 1) ?? '';
+};
+
+const onInputChange = (index: number, value: string): void => {
+  if (typeof localValue.value.at(index) !== 'string') return;
+
+  const newValue = formatValue(value);
+
+  if (!newValue && value) return;
+
+  localValue.value[index] = newValue;
   if (value) {
     refs.value.get(index + 1)?.focus();
   } else {
@@ -40,8 +50,7 @@ const onInputChange = (index: number, value: string): void => {
 
 const onInput = (event: InputEvent): void => {
   // eslint-disable-next-line no-param-reassign
-  (event.target as HTMLInputElement).value = (event.target as HTMLInputElement)
-    .value[(event.target as HTMLInputElement).value.length - 1] ?? '';
+  (event.target as HTMLInputElement).value = formatValue((event.target as HTMLInputElement).value);
 };
 
 const onKeyPress = (e: KeyboardEvent, index: number): void => {
@@ -75,13 +84,18 @@ const onPaste = (e: ClipboardEvent): void => {
     .slice(0, props.count)
     .split('');
   localValue.value = [...pasteValue, ...(new Array(props.count).fill('').slice(pasteValue.length))];
-  refs.value.get(pasteValue.length === props.count ? props.count - 1 : pasteValue.length)?.focus();
+
+  const nextInputElement = pasteValue.length === props.count ? props.count - 1 : pasteValue.length;
+  refs.value.get(nextInputElement)?.focus();
 };
 
 watch(
-  localValue.value,
+  () => localValue.value,
   () => {
     emits('update:model-value', localValue.value.join(''));
+  },
+  {
+    deep: true,
   },
 );
 </script>
