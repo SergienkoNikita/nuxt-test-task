@@ -1,10 +1,23 @@
 <script setup lang="ts">
-import { definePageMeta } from '#imports';
+import { definePageMeta, navigateTo } from '#imports';
+import { useAuthStore } from '~/stores/use-auth-store';
 import { LoginForm } from '~/components/common/login-form';
 
 definePageMeta({
   layout: 'authorization',
 });
+
+const authStore = useAuthStore();
+
+const onSubmit = async () => {
+  try {
+    await authStore.login(authStore.loginForm);
+    navigateTo('/home');
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  }
+};
 </script>
 
 <template>
@@ -22,7 +35,10 @@ definePageMeta({
     </div>
 
     <div class="w-[453px] m-auto text-center">
-      <LoginForm class="w-[453px]" />
+      <LoginForm
+        class="w-[453px]"
+        @submit="onSubmit"
+      />
 
       <p class="mt-4 text-xs-normal">
         <span>Don’t have account? </span>

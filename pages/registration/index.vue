@@ -3,7 +3,7 @@ import {
   computed, definePageMeta, navigateTo, ref,
 } from '#imports';
 import { RegistrationForm } from '~/components/common/registration-form';
-import ClearFormModal from '~/components/common/clear-form-modal/clear-form-modal.vue';
+import { ClearFormModal } from '~/components/common/clear-form-modal';
 import { useAuthStore } from '~/stores/use-auth-store';
 
 definePageMeta({

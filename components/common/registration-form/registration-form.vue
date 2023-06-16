@@ -38,8 +38,8 @@ const validatePasswordConfirmation = (): void => {
     @submit="onSubmitRegistrationForm"
   >
     <BaseInput
-      v-model="registrationForm.userName"
-      name="username"
+      v-model="registrationForm.name"
+      name="name"
       placeholder="Username"
       rules="required|alpha"
       type="text"
@@ -54,12 +54,12 @@ const validatePasswordConfirmation = (): void => {
       </template>
     </BaseInput>
     <BaseInput
-      v-model="registrationForm.email"
-      name="email"
+      v-model="registrationForm.username"
+      name="username"
       type="text"
       autocomplete="email"
       placeholder="Email"
-      rules="required|email"
+      rules="required|alpha_num"
       class="mb-[10px]"
     >
       <template #prefix>
@@ -102,7 +102,7 @@ const validatePasswordConfirmation = (): void => {
 
     <BaseButton
       class="mt-[25px]"
-      :disabled="!meta.valid && !isConfirmPasswordValid"
+      :disabled="!meta.valid || !isConfirmPasswordValid"
       label="SIGN UP"
     />
   </BaseForm>

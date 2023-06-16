@@ -16,19 +16,20 @@ const onSubmitLoginForm = (formData: LoginForm) => {
   emits('submit', formData);
 };
 </script>
-
+<!--Было-бы не плохо добавить валидацию на email, но апи не позволяет,
+    подробности в ~/stores/use-auth-store.ts-->
 <template>
   <BaseForm
     v-slot="{ meta }"
     @submit="onSubmitLoginForm"
   >
     <BaseInput
-      v-model="loginForm.email"
-      name="email"
+      v-model="loginForm.username"
+      name="username"
       type="text"
       autocomplete="email"
       placeholder="Email"
-      rules="required|email"
+      rules="required|alpha_num"
       class="mb-[10px]"
     >
       <template #prefix>
