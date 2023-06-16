@@ -9,7 +9,12 @@ import {
 import { defineNuxtPlugin } from '#imports';
 
 export default defineNuxtPlugin(() => {
-  defineRule('required', required);
+  defineRule(
+    'required',
+    (value: unknown, _params, ctx) => (
+      required(value) || `Filed ${ctx.name} is required`
+    ),
+  );
   defineRule('alpha', alpha);
   defineRule('email', email);
   defineRule('integer', integer);

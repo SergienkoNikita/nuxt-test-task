@@ -101,10 +101,20 @@ const typographyComponents = {
         lineHeight: '24px',
         fontWeight: defaultTheme.fontWeight.medium,
     },
+    '.text-sm-normal': {
+        fontSize: fontSize.sm,
+        lineHeight: '24px',
+        fontWeight: defaultTheme.fontWeight.normal,
+    },
     '.text-xs-medium': {
         fontSize: fontSize.xs,
         lineHeight: '24px',
         fontWeight: defaultTheme.fontWeight.medium,
+    },
+    '.text-xs-normal': {
+        fontSize: fontSize.xs,
+        lineHeight: '24px',
+        fontWeight: defaultTheme.fontWeight.normal,
     },
     '.text-xs-bold': {
         fontSize: fontSize.xs,

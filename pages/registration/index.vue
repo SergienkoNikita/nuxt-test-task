@@ -9,8 +9,11 @@ definePageMeta({
 <template>
   <div class="">
     Регистрация
-    <NuxtLink to="/login">
-      Логин
+    <NuxtLink
+      class="text-blue-200 text-xs-bold"
+      to="/login"
+    >
+      to Логин
     </NuxtLink>
   </div>
 </template>
