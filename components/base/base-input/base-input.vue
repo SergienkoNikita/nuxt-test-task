@@ -30,8 +30,16 @@ const localValue = computed<BaseInputProps['modelValue']>({
   },
   set(value) {
     handleChange(value);
+    setTouched(false);
     emits('update:model-value', value);
   },
+});
+
+const nativeControlAttributes = computed(() => {
+  const nativeControlAttrs = { ...attrs };
+  delete nativeControlAttrs.class;
+  delete nativeControlAttrs.style;
+  return nativeControlAttrs;
 });
 
 defineExpose({ setErrors });
@@ -41,13 +49,16 @@ const onNativeControlBlur = () => {
 };
 
 const onNativeControlFocus = () => {
-  setTouched(false);
   emits('focus');
 };
 </script>
 
 <template>
-  <BaseField :error-message="meta.touched ? errorMessage : undefined">
+  <BaseField
+    :class="attrs.class"
+    :style="attrs.style"
+    :error-message="meta.touched ? errorMessage : undefined"
+  >
     <template
       v-if="slots.prefix"
       #prefix
@@ -56,7 +67,7 @@ const onNativeControlFocus = () => {
     </template>
 
     <input
-      v-bind="attrs"
+      v-bind="nativeControlAttributes"
       v-model="localValue"
       @blur="onNativeControlBlur"
       @focus="onNativeControlFocus"

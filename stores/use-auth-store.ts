@@ -1,11 +1,11 @@
 import { defineStore, ref } from '#imports';
 
-interface LoginForm {
+export interface LoginForm {
   email: string,
   password: string;
 }
 
-interface RegistrationForm extends LoginForm {
+export interface RegistrationForm extends LoginForm {
   passwordRepeat: string;
   userName: string;
 }
