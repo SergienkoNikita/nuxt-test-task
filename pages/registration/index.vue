@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { definePageMeta, navigateTo, ref } from '#imports';
-import RegistrationForm from '~/components/common/registration-form/registration-form.vue';
+import { RegistrationForm } from '~/components/common/registration-form';
 import ClearFormModal from '~/components/common/clear-form-modal/clear-form-modal.vue';
 import { useAuthStore } from '~/stores/use-auth-store';
 
@@ -12,7 +12,7 @@ const authStore = useAuthStore();
 
 const isClearFormModalVisible = ref<boolean>(false);
 
-const onRedirectClick = (): void => {
+const onLoginLinkClick = (): void => {
   isClearFormModalVisible.value = true;
 };
 
@@ -21,9 +21,8 @@ const onClearFormApply = (): void => {
   navigateTo('/login');
 };
 
-const onSubmitForm = (form): void => {
-  // eslint-disable-next-line no-console
-  console.log(form);
+const onSubmitForm = (): void => {
+  navigateTo('/verify');
 };
 </script>
 
@@ -37,22 +36,23 @@ const onSubmitForm = (form): void => {
     </h4>
     <div class="w-[453px] m-auto text-center">
       <RegistrationForm @submit="onSubmitForm" />
+
       <p class="mt-4 text-xs-normal">
         <span>You have account? </span>
 
         <a
           class="text-blue-200 text-xs-medium"
           href="/login"
-          @click.prevent="onRedirectClick"
+          @click.prevent="onLoginLinkClick"
         >
           Login now
         </a>
       </p>
     </div>
-  </div>
 
-  <ClearFormModal
-    v-model="isClearFormModalVisible"
-    @apply="onClearFormApply"
-  />
+    <ClearFormModal
+      v-model="isClearFormModalVisible"
+      @apply="onClearFormApply"
+    />
+  </div>
 </template>

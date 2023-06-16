@@ -86,7 +86,7 @@ watch(() => props.modelValue, (newModalValue): void => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .base-checkbox {
   @apply relative align-middle inline-flex items-center gap-x-[10px]
   mb-0 select-none min-h-[20px] min-w-[20px] cursor-pointer text-sm-normal;

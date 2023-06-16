@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BaseInputEmits, BaseInputProps } from '~/components/base/base-input/types';
 import {
-  computed, useAttrs, useField, useSlots,
+  ref, computed, useAttrs, useField, useSlots,
 } from '#imports';
 import BaseField from '~/components/base/base-input/base-field.vue';
 
@@ -13,6 +13,8 @@ const slots = useSlots();
 defineOptions({
   inheritAttrs: false,
 });
+
+const nativeControl = ref<HTMLInputElement>();
 
 const {
   handleChange,
@@ -41,8 +43,6 @@ const nativeControlAttributes = computed(() => {
   delete nativeControlAttrs.style;
   return nativeControlAttrs;
 });
-
-defineExpose({ setErrors });
 const onNativeControlBlur = () => {
   setTouched(true);
   emits('blur');
@@ -51,6 +51,19 @@ const onNativeControlBlur = () => {
 const onNativeControlFocus = () => {
   emits('focus');
 };
+
+const onNativeControlInput = (event: InputEvent) => {
+  emits('input', event);
+};
+
+const focus = (): void => {
+  if (!nativeControl.value) return;
+
+  nativeControl.value.focus();
+  nativeControl.value.setSelectionRange(0, nativeControl.value.value.length);
+};
+
+defineExpose({ setErrors, focus });
 </script>
 
 <template>
@@ -67,10 +80,13 @@ const onNativeControlFocus = () => {
     </template>
 
     <input
+      ref="nativeControl"
       v-bind="nativeControlAttributes"
       v-model="localValue"
+      :class="props.nativeControlClass"
       @blur="onNativeControlBlur"
       @focus="onNativeControlFocus"
+      @input="onNativeControlInput"
     >
 
     <template

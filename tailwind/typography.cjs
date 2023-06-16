@@ -75,6 +75,11 @@ const typographyComponents = {
         lineHeight: '24px',
         fontWeight: defaultTheme.fontWeight.bold,
     },
+    '.text-lg-semibold': {
+        fontSize: fontSize.lg,
+        lineHeight: '24px',
+        fontWeight: defaultTheme.fontWeight.semibold,
+    },
     '.text-lg-bold': {
         fontSize: fontSize.lg,
         lineHeight: '24px',
