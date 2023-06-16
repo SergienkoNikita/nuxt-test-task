@@ -14,7 +14,7 @@ definePageMeta({
     <div class="flex w-full items-center justify-between px-3">
       <hr class="w-[120px] bg-grey-400">
 
-      <p class="text-xs-medium tracking-widest">
+      <p class="text-xs-medium tracking-wide">
         with email
       </p>
 
@@ -24,11 +24,11 @@ definePageMeta({
     <div class="w-[453px] m-auto text-center">
       <LoginForm class="w-[453px]" />
 
-      <p class="mt-4 text-xs-medium">
+      <p class="mt-4 text-xs-normal">
         <span>Don’t have account? </span>
 
         <NuxtLink
-          class="text-blue-200 text-xs-bold"
+          class="text-blue-200 text-xs-medium"
           to="/registration"
         >
           Create an account

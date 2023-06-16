@@ -8,6 +8,7 @@ export interface LoginForm {
 export interface RegistrationForm extends LoginForm {
   passwordRepeat: string;
   userName: string;
+  acceptPolitics: boolean;
 }
 
 const getDefaultLoginForm = (): LoginForm => ({
@@ -20,6 +21,7 @@ const getDefaultRegistrationForm = (): RegistrationForm => ({
   email: '',
   password: '',
   passwordRepeat: '',
+  acceptPolitics: false,
 });
 
 export const useAuthStore = defineStore('auth', () => {

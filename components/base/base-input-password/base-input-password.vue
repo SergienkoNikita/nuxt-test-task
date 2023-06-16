@@ -11,6 +11,8 @@ const props = defineProps<PasswordInputProps>();
 const emits = defineEmits<BaseInputEmits>();
 const attrs = useAttrs();
 
+const baseInput = ref<InstanceType<typeof BaseInput>>();
+
 const isPasswordVisible = ref<boolean>(false);
 
 const activeInputType = computed<'password' | 'text'>(() => (
@@ -20,10 +22,19 @@ const activeInputType = computed<'password' | 'text'>(() => (
 const togglePasswordVisible = (): void => {
   isPasswordVisible.value = !isPasswordVisible.value;
 };
+
+const setErrors = (error: string): void => {
+  if (!baseInput.value) return;
+
+  baseInput.value.setErrors(error);
+};
+
+defineExpose({ setErrors });
 </script>
 
 <template>
   <BaseInput
+    ref="baseInput"
     :name="props.name ?? 'password'"
     :model-value="props.modelValue"
     :placeholder="attrs.placeholder ?? 'Password'"

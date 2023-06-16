@@ -5,6 +5,7 @@ import {
   length,
   required,
   integer,
+  confirmed,
 } from '@vee-validate/rules';
 import { defineNuxtPlugin } from '#imports';
 
@@ -19,6 +20,7 @@ export default defineNuxtPlugin(() => {
   defineRule('email', email);
   defineRule('integer', integer);
   defineRule('length', length);
+  defineRule('confirmed', confirmed);
   defineRule<string>('password', (value: string) => {
     if (value.replace(/\w|!|@|\$|,|#|%|&|'|\*|\+|-|\/|=|\?|\^|_|`|\{|}|\||~/ig, '').length) {
       return "Available symbols A → Z; a → z; 0-9;  @,!#$%&\\'*+-/=?^_` {|}~";
