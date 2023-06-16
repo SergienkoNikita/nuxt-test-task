@@ -2,7 +2,7 @@
 import { ref, watch } from '#imports';
 import { BaseInput } from '~/components/base';
 
-const AVAILABLE_KEYPRESS_CODES = {
+const AVAILABLE_KEYPRESS_CODES: Record<'left' | 'right' | 'backspace', string> = {
   left: 'ArrowLeft',
   right: 'ArrowRight',
   backspace: 'Backspace',
@@ -16,14 +16,14 @@ const props = withDefaults(defineProps<{
 });
 
 interface Emits {
-  (event: 'update:model-value', value: string)
+  (event: 'update:model-value', value: string): void
 }
 
 const emits = defineEmits<Emits>();
 
 const localValue = ref<string[]>(new Array(props.count).fill(''));
-const refs = ref<Map<number, InstanceType<BaseInput>>>(new Map());
-const setRefs = (el: InstanceType<BaseInput>, id: number): void => {
+const refs = ref<Map<number, InstanceType<typeof BaseInput>>>(new Map());
+const setRefs = (el: InstanceType<typeof BaseInput>, id: number): void => {
   refs.value.set(id, el);
 };
 
@@ -40,10 +40,11 @@ const onInputChange = (index: number, value: string): void => {
 
 const onInput = (event: InputEvent): void => {
   // eslint-disable-next-line no-param-reassign
-  event.target.value = event.target.value[event.target.value.length - 1] ?? '';
+  (event.target as HTMLInputElement).value = (event.target as HTMLInputElement)
+    .value[(event.target as HTMLInputElement).value.length - 1] ?? '';
 };
 
-const onKeyPress = (e: KeyboardEvent, index): void => {
+const onKeyPress = (e: KeyboardEvent, index: number): void => {
   if (!Object.values(AVAILABLE_KEYPRESS_CODES).includes(e.code)) return;
 
   if (e.code === AVAILABLE_KEYPRESS_CODES.right) {
@@ -66,7 +67,9 @@ const onKeyPress = (e: KeyboardEvent, index): void => {
   }
 };
 
-const onPaste = (e: ClipboardEvent) => {
+const onPaste = (e: ClipboardEvent): void => {
+  if (!e.clipboardData) return;
+
   const pasteValue = e.clipboardData.getData('text/plain')
     .replace(/[^0-9A-Z]/gi, '')
     .slice(0, props.count)

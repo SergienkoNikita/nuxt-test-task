@@ -7,7 +7,7 @@ import {
 import BaseButton from '~/components/base/base-button/base-button.vue';
 
 interface Emits {
-  (event: 'submit', formData: RegistrationForm)
+  (event: 'submit', formData: RegistrationForm): void
 }
 
 const emits = defineEmits<Emits>();

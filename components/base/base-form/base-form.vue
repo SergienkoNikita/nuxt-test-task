@@ -10,7 +10,7 @@ const form = ref<HTMLFormElement | null>();
 const emits = defineEmits(['submit', 'validation-error']);
 
 const focusFirstInvalidElement = (): void => {
-  if (!form.value && !form.value?.elements) return;
+  if (!form.value) return;
 
   const formElements = Array.from(form.value.elements) as HTMLInputElement[];
 

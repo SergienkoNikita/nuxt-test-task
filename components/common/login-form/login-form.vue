@@ -5,7 +5,7 @@ import {
 import { LoginForm, useAuthStore } from '~/stores/use-auth-store';
 
 interface Emits {
-  (event: 'submit', form: LoginForm)
+  (event: 'submit', form: LoginForm): void;
 }
 
 const { loginForm } = useAuthStore();

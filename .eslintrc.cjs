@@ -3,7 +3,7 @@ module.exports = {
     ignorePatterns: ["./nuxt.config.ts"],
     extends: [
         'airbnb',
-        'airbnb-typescript',
+        'airbnb-typescript/base',
         'plugin:nuxt/recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:vue/vue3-recommended',

@@ -37,7 +37,7 @@ const buttonType = computed<ButtonType>(() => {
   return ButtonType.Button;
 });
 
-const currentButtonComponent = computed<NuxtLink | 'button'>(() => {
+const currentButtonComponent = computed<typeof NuxtLink | 'button'>(() => {
   if (buttonType.value === ButtonType.Link) return NuxtLink;
 
   return 'button';

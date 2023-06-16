@@ -5,7 +5,7 @@ import {
 } from '#imports';
 
 interface Emits {
-  (event: 'update:model-value'): void;
+  (event: 'update:model-value', value: boolean): void;
 }
 
 const props = withDefaults(defineProps<{
@@ -36,7 +36,7 @@ const {
   errorMessage,
   setTouched,
   validate,
-} = useField(props.name, props.rules, {
+} = useField(props.name, props.rules as RuleExpression<boolean>, {
   standalone: !props.name,
   initialValue: props.modelValue,
 });

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { definePageMeta, navigateTo, ref } from '#imports';
+import {
+  computed, definePageMeta, navigateTo, ref,
+} from '#imports';
 import { RegistrationForm } from '~/components/common/registration-form';
 import ClearFormModal from '~/components/common/clear-form-modal/clear-form-modal.vue';
 import { useAuthStore } from '~/stores/use-auth-store';
@@ -12,13 +14,21 @@ const authStore = useAuthStore();
 
 const isClearFormModalVisible = ref<boolean>(false);
 
-const onLoginLinkClick = (): void => {
-  isClearFormModalVisible.value = true;
-};
+const isFormHasValues = computed<boolean>(() => (
+  Boolean(Object.values(authStore.registrationForm).filter((value) => Boolean(value)).length)
+));
 
 const onClearFormApply = (): void => {
   authStore.clearRegistrationForm();
   navigateTo('/login');
+};
+
+const onLoginLinkClick = (): void => {
+  if (isFormHasValues.value) {
+    isClearFormModalVisible.value = true;
+  } else {
+    onClearFormApply();
+  }
 };
 
 const onSubmitForm = (): void => {
